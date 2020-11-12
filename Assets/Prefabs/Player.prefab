@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 330821992140867523}
   - component: {fileID: 330723168258316769}
   - component: {fileID: 360421513991680185}
-  - component: {fileID: 1759225484872911}
   - component: {fileID: 8792483462799846765}
-  m_Layer: 0
+  - component: {fileID: 1869234056130813560}
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -204,22 +204,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1759225484872911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362039992616568775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909e53625fa31eb45a3edeaf2cd3e75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _dropAmount: 0.25
-  _healthDropRate: 0.5
-  _healthBarUI: {fileID: 0}
 --- !u!114 &8792483462799846765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +221,37 @@ MonoBehaviour:
   _bulletPoint: {fileID: 360421514750175431}
   _shootForce: 100
   _fireRate: 0.1
+  _defaultDamage: 5
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1869234056130813560}
+        m_MethodName: TakeDamage
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1869234056130813560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362039992616568775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a533866715bb72a41a4f4ce764c94e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _healthBarUI: {fileID: 0}
+  _dropAmount: 0.25
+  _healthDropRate: 0.5
 --- !u!1001 &360421514791437184
 PrefabInstance:
   m_ObjectHideFlags: 0

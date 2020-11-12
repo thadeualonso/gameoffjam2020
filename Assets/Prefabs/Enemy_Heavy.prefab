@@ -77,10 +77,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3841543581351942556, guid: bfbe01dcc8499a343af59767fae803a2,
+    - target: {fileID: 3841543581351942555, guid: bfbe01dcc8499a343af59767fae803a2,
         type: 3}
-      propertyPath: _speed
-      value: 2
+      propertyPath: m_Radius
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3841543581351942556, guid: bfbe01dcc8499a343af59767fae803a2,
         type: 3}

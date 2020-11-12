@@ -1,42 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ECM.Controllers;
+﻿using ECM.Controllers;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemyBehaviour : BaseAgentController
 {
-    [Header("AI Settings")]
-    [SerializeField] GameObject _target;
-    [SerializeField] float _health = 100f;
-    [SerializeField] float _bulletDamage = 1f;
-    [SerializeField] HealthBarUI _healthBarUI;
-    [SerializeField] UnityEvent OnDie;
-
+    private Transform _target;
     private float _currentHealth;
-
-    protected override void HandleInput()
-    {
-
-    }
 
     private void Start()
     {
-        _target = GameObject.FindGameObjectWithTag("Player");
-        agent.SetDestination(_target.transform.position);
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
+        agent.SetDestination(_target.position);
         agent.isStopped = false;
-        _currentHealth = _health;
-        _healthBarUI.SetMaxHealth(_health);
+    }
+
+    public override void Update()
+    {
+        UpdateRotation();
+        Animate();
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
 
-        agent.SetDestination(_target.transform.position);
+        float distanceFromTarget = Vector3.Distance(transform.position, _target.position);
+
+        if (distanceFromTarget > stoppingDistance)
+            ChasePlayer();
+        else
+            AttackTarget();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void AttackTarget()
+    {
+        
+    }
+
+    private void ChasePlayer()
+    {
+        agent.SetDestination(_target.position);
+    }
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Bullet")
         {
@@ -53,5 +59,5 @@ public class EnemyBehaviour : BaseAgentController
                 Destroy(gameObject);
             }
         }
-    }
+    }*/
 }

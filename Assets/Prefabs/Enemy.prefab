@@ -177,7 +177,10 @@ GameObject:
   - component: {fileID: 3841543581351942558}
   - component: {fileID: 3841543581351942559}
   - component: {fileID: 3841543581351942556}
-  - component: {fileID: 5261676681897976321}
+  - component: {fileID: 8733352692259250169}
+  - component: {fileID: 2893326415274350944}
+  - component: {fileID: 3574618960524209588}
+  - component: {fileID: -6627410517873253998}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -307,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7073fc2833bfc4dabd50f3307ecb39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 5
   _angularSpeed: 540
   _acceleration: 50
   _deceleration: 20
@@ -329,29 +332,11 @@ MonoBehaviour:
   _rootMotionRotation: 0
   _autoBraking: 1
   _brakingDistance: 2
-  _stoppingDistance: 1
+  _stoppingDistance: 3
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  _target: {fileID: 3841543581452239466}
-  _health: 100
-  _bulletDamage: 5
-  _healthBarUI: {fileID: 3841543581452239460}
-  OnDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5261676681897976321}
-        m_MethodName: DropItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5261676681897976321
+--- !u!114 &8733352692259250169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,12 +345,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 3841543581351942557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30a3cd7f89ebd3419d671cf3aae9eb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 909e53625fa31eb45a3edeaf2cd3e75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _healthBarUI: {fileID: 3841543581452239460}
+--- !u!114 &2893326415274350944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841543581351942557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e355aaca473b734fb919eae635c2202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3574618960524209588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841543581351942557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4952f3c638477c449bf3ba81d0130250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _chanceToDrop: 50
   _dropItem: {fileID: 849401843367174586, guid: 11ffedd4b12023542af31b12f9662a86,
     type: 3}
+--- !u!114 &-6627410517873253998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841543581351942557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427b0775d85a30643882af4973711eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthSystem: {fileID: 8733352692259250169}
 --- !u!1 &3841543581452239466
 GameObject:
   m_ObjectHideFlags: 0

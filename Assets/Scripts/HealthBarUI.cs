@@ -11,9 +11,10 @@ public class HealthBarUI : MonoBehaviour
     {
         _healthSlider.maxValue = maxHealth;
     }
+
     public void UpdateHealth(float health)
     {
-        if(!_healthSlider.gameObject.activeInHierarchy)
+        if(health < _healthSlider.maxValue)
             _healthSlider.gameObject.SetActive(true);
 
         _healthSlider.value = health;
