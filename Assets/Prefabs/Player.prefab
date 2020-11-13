@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 360421513991680185}
   - component: {fileID: 8792483462799846765}
   - component: {fileID: 1869234056130813560}
+  - component: {fileID: -7302136119043837925}
+  - component: {fileID: -3843825349240496148}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -252,6 +254,32 @@ MonoBehaviour:
   _healthBarUI: {fileID: 0}
   _dropAmount: 0.25
   _healthDropRate: 0.5
+--- !u!114 &-7302136119043837925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362039992616568775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427b0775d85a30643882af4973711eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthSystem: {fileID: 1869234056130813560}
+--- !u!114 &-3843825349240496148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362039992616568775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6179800c5078c4481ea0a61474f1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceToAdd: 100
 --- !u!1001 &360421514791437184
 PrefabInstance:
   m_ObjectHideFlags: 0

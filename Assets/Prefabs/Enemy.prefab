@@ -336,6 +336,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  _defaultDamage: 2
+  _attackCooldown: 1
 --- !u!114 &8733352692259250169
 MonoBehaviour:
   m_ObjectHideFlags: 0

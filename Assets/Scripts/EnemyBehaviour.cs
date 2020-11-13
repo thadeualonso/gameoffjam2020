@@ -4,14 +4,21 @@ using UnityEngine.Events;
 
 public class EnemyBehaviour : BaseAgentController
 {
+    [Header("Attack Settings")]
+    [SerializeField] int _defaultDamage = 2;
+    [SerializeField] float _attackCooldown = 1f;
+    
     private Transform _target;
     private float _currentHealth;
+    private bool _canAttack;
+    private float _attackTimer;
 
     private void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
         agent.SetDestination(_target.position);
         agent.isStopped = false;
+        _attackTimer = 0f;
     }
 
     public override void Update()
@@ -34,7 +41,27 @@ public class EnemyBehaviour : BaseAgentController
 
     private void AttackTarget()
     {
-        
+        if(_attackTimer <= 0f)
+        {
+            DoDamage();
+            _attackTimer = _attackCooldown;
+        }
+        else
+        {
+            _attackTimer -= Time.deltaTime;
+        }
+    }
+
+    private void DoDamage()
+    {
+        Attack attack = new Attack(_defaultDamage, false);
+
+        var targetAttackables = _target.GetComponents(typeof(IAttackable));
+
+        foreach (IAttackable attackable in targetAttackables)
+        {
+            attackable.OnAttack(gameObject, attack);
+        }
     }
 
     private void ChasePlayer()
