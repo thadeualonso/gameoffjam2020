@@ -312,8 +312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _angularSpeed: 540
-  _acceleration: 50
-  _deceleration: 20
+  _acceleration: 500
+  _deceleration: 200
   _groundFriction: 8
   _useBrakingFriction: 0
   _brakingFriction: 8
@@ -336,8 +336,13 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  _debug: 0
   _defaultDamage: 2
   _attackCooldown: 1
+  _rangeDetection: 20
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8733352692259250169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,9 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4952f3c638477c449bf3ba81d0130250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceToDrop: 50
-  _dropItem: {fileID: 849401843367174586, guid: 11ffedd4b12023542af31b12f9662a86,
-    type: 3}
+  _yOffset: 1
+  _dropItems: []
 --- !u!114 &-6627410517873253998
 MonoBehaviour:
   m_ObjectHideFlags: 0

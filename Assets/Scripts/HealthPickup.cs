@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickup : Pickup
 {
     [SerializeField] float _gainAmount;
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnPickUp(GameObject other)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            other.GetComponent<HealthSystem>().GainHealth(_gainAmount);
-            Destroy(gameObject);
-        }
+        other.GetComponent<HealthSystem>().GainHealth(_gainAmount);
     }
 }

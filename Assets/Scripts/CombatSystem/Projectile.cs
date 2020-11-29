@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     private GameObject _caster;
     private float _speed;
     private Vector3 _travelDirection;
-    private float _distanceTravelled;
 
     public void Fire(GameObject caster, Vector3 direction, float speed)
     {
@@ -17,7 +16,7 @@ public class Projectile : MonoBehaviour
 
         CalculateTravelDirection(direction);
 
-        _distanceTravelled = 0f;
+        GetComponent<Rigidbody>().AddForce(_travelDirection * _speed, ForceMode.Impulse);
     }
 
     private void CalculateTravelDirection(Vector3 direction)
@@ -25,15 +24,6 @@ public class Projectile : MonoBehaviour
         _travelDirection = direction;
         _travelDirection.y = 0f;
         _travelDirection.Normalize();
-    }
-
-    private void Update()
-    {
-        float distanceToTravel = _speed * Time.deltaTime;
-
-        transform.Translate(_travelDirection * distanceToTravel);
-
-        _distanceTravelled += distanceToTravel;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1688,7 +1688,7 @@ namespace ECM.Components
             if (_lateFixedUpdateCoroutine != null)
                 StopCoroutine(_lateFixedUpdateCoroutine);
 
-            _lateFixedUpdateCoroutine = StartCoroutine(LateFixedUpdate());
+            //_lateFixedUpdateCoroutine = StartCoroutine(LateFixedUpdate());
         }
 
         public void OnDisable()

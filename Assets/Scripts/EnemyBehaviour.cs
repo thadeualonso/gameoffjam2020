@@ -5,8 +5,11 @@ using UnityEngine.Events;
 public class EnemyBehaviour : BaseAgentController
 {
     [Header("Attack Settings")]
+    [SerializeField] bool _debug;
     [SerializeField] int _defaultDamage = 2;
     [SerializeField] float _attackCooldown = 1f;
+    [SerializeField] float _rangeDetection = 10f;
+    [SerializeField] LayerMask _playerLayer;
     
     private Transform _target;
     private float _currentHealth;
@@ -15,14 +18,21 @@ public class EnemyBehaviour : BaseAgentController
 
     private void Start()
     {
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
-        agent.SetDestination(_target.position);
-        agent.isStopped = false;
         _attackTimer = 0f;
     }
 
     public override void Update()
     {
+        if(_target == null)
+        {
+            var targets = Physics.OverlapSphere(transform.position, _rangeDetection, _playerLayer);
+            
+            if(targets.Length > 0)
+            {
+                _target = targets[0].transform;
+            }
+        }
+
         UpdateRotation();
         Animate();
     }
@@ -31,12 +41,15 @@ public class EnemyBehaviour : BaseAgentController
     {
         base.FixedUpdate();
 
-        float distanceFromTarget = Vector3.Distance(transform.position, _target.position);
+        if(_target != null)
+        {
+            float distanceFromTarget = Vector3.Distance(transform.position, _target.position);
 
-        if (distanceFromTarget > stoppingDistance)
-            ChasePlayer();
-        else
-            AttackTarget();
+            if (distanceFromTarget > stoppingDistance)
+                ChasePlayer();
+            else
+                AttackTarget();
+        }
     }
 
     private void AttackTarget()
@@ -69,22 +82,12 @@ public class EnemyBehaviour : BaseAgentController
         agent.SetDestination(_target.position);
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnDrawGizmos()
     {
-        if(other.gameObject.tag == "Bullet")
+        if(_debug)
         {
-            Destroy(other.gameObject);
-
-            if(_currentHealth > 0)
-            {
-                _currentHealth -= _bulletDamage;
-                _healthBarUI.UpdateHealth(_currentHealth);
-            }
-            else
-            {
-                OnDie?.Invoke();
-                Destroy(gameObject);
-            }
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _rangeDetection);
         }
-    }*/
+    }
 }

@@ -1,17 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DestructedDropItem : MonoBehaviour, IDestructible
 {
-    [SerializeField] int _chanceToDrop;
-    [SerializeField] GameObject _dropItem;
+    [SerializeField] float _yOffset = 0.5f;
+    [SerializeField] List<DropItem> _dropItems;
 
     public void DropItem()
     {
-        int rand = Random.Range(0, 101);
+        int randChance = Random.Range(0, 101);
+        
+        List<DropItem> possibleDrops = _dropItems.FindAll(i => randChance <= i.ChanceToDrop);
 
-        if(rand <= _chanceToDrop)
+        if(possibleDrops.Count > 0)
         {
-            Instantiate(_dropItem, transform.position, Quaternion.identity);
+            int randIndex = Random.Range(0, possibleDrops.Count);
+            var position = new Vector3(
+                transform.position.x, 
+                _yOffset, 
+                transform.position.z);
+
+            Instantiate(possibleDrops[randIndex].ItemToDrop, position, Quaternion.identity);
         }
     }
 
@@ -19,4 +28,11 @@ public class DestructedDropItem : MonoBehaviour, IDestructible
     {
         DropItem();
     }
+}
+
+[System.Serializable]
+public class DropItem
+{
+    public int ChanceToDrop;
+    public GameObject ItemToDrop;
 }
